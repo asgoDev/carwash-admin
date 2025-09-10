@@ -15,7 +15,7 @@ const NavBar = ({ menuBehavior }) => {
 
 const NavUl = ({ ulData, closeSublist }) => {
   return (
-    <ul className="list-none space-y-2">
+    <ul className={` space-y-2`}>
       {ulData.map((li, index) => (
         <NavLi key={index} liData={li} closeSublist={closeSublist} />
       ))}
@@ -54,7 +54,7 @@ const NavLi = ({ liData, closeSublist }) => {
 
           {/* usamos max-h con transición */}
           <ul
-            className={`list-none max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 pl-10`}
+            className={`rounded list-none max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 pl-10`}
           >
             {sublist.map((sub, i) => (
               <NavLi key={i} liData={sub} closeSublist={handleCloseSublist} />
@@ -64,7 +64,7 @@ const NavLi = ({ liData, closeSublist }) => {
       ) : (
         <Link
           to={path || "#"}
-          className="block w-full"
+          className={`block w-full`}
           onClick={() => {
             menuFx.close();
             if (closeSublist) closeSublist();
@@ -75,13 +75,15 @@ const NavLi = ({ liData, closeSublist }) => {
               isActive
                 ? " text-white font-medium"
                 : "text-gray-300 hover:text-white"
-            }`}
+            } ${closeSublist && "py-2 px-4"}`}
           >
-            <span
-              className={`p-2 ${isActive ? "text-white" : "text-gray-400"}`}
-            >
-              {icon}
-            </span>{" "}
+            {icon && (
+              <span
+                className={`p-2 ${isActive ? "text-white" : "text-gray-400"}`}
+              >
+                {icon}
+              </span>
+            )}
             <span>{name}</span>
           </label>
         </Link>
