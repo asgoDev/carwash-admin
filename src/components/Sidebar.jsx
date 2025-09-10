@@ -11,14 +11,14 @@ export default function Sidebar() {
   return (
     <aside
       className={`relative px-4 ${
-        collapsed ? "w-16" : "w-64"
-      } bg-gray-900 text-white flex flex-col transition-all duration-300 overflow-hidden`}
+        collapsed ? "w-18" : "w-64"
+      } bg-gray-900 text-white flex flex-col transition-all duration-300 overflow-hidden relative after:content-[''] after:absolute after:top-0 after:bottom-0 after:right-0 after:w-3 after:bg-gray-900 after:rounded-full">`}
     >
       {/* Header */}
-      <header className=" py-4 text-xl font-bold border-b border-gray-700 flex items-center gap-4">
+      <header className=" py-4 text-xl font-bold border-b border-gray-700 flex items-center gap-2">
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1 rounded hover:bg-gray-300 z-10 justify-self-center"
+          className="p-2 rounded hover:bg-gray-300 z-10 justify-self-center"
         >
           {/* {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />} */}
 
