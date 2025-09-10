@@ -7,9 +7,15 @@ export default function App() {
     <Router>
       <Layout>
         <Routes>
-          {routes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {routes.map((r) =>
+            r.path ? (
+              <Route key={r.path} path={r.path} element={r.element} />
+            ) : (
+              r.sublist.map((s) => (
+                <Route key={s.path} path={s.path} element={s.element} />
+              ))
+            )
+          )}
         </Routes>
       </Layout>
     </Router>

@@ -3,7 +3,13 @@ import routes from "../routes.jsx";
 
 export default function Header() {
   const location = useLocation();
-  const current = routes.find((r) => r.path === location.pathname);
+  const current = routes.find((r) =>
+    r.path
+      ? r.path === location.pathname
+      : r.sublist?.some((s) => s.path === location.pathname)
+      ? r.sublist.find((s) => s.path === location.pathname)
+      : null
+  );
 
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center px-6">

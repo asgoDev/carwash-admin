@@ -8,6 +8,13 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
 
+  const closeMenu = () => {
+    setCollapsed(true);
+  };
+  const openMenu = () => {
+    setCollapsed(false);
+  };
+
   return (
     <aside
       className={`relative px-4 ${
@@ -59,7 +66,7 @@ export default function Sidebar() {
         </ul>
       </nav> */}
 
-      <NavBar />
+      <NavBar menuBehavior={{ openMenu, closeMenu }} />
 
       {/* Menu nuevo */}
     </aside>
