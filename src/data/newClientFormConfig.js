@@ -6,7 +6,7 @@ const newClientFormConfig = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Failed to save client");
+      if (!response.ok) throw new Error("Error guardando cliente");
       const result = await response.json();
       console.log("Guardado:", result);
       // Puedes mostrar un mensaje de éxito aquí si lo deseas
@@ -14,6 +14,7 @@ const newClientFormConfig = {
       console.error(error);
       // Puedes mostrar un mensaje de error aquí si lo deseas
     }
+    
   },
   submitLabel: "Agregar Cliente",
   inputsConfig: [

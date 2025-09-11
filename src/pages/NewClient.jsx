@@ -1,11 +1,10 @@
 import ContentLayaout from "../components/ContentLayout";
-import DynamicForm from "../components/DynamicForm";
-import newClientFormConfig from "./newClientFormConfig";
+import NewClientForm from "../components/NewClientForm";
 
 const NewClient = () => {
   return (
     <ContentLayaout title="Registro">
-      <DynamicForm config={newClientFormConfig} />
+      <NewClientForm />
     </ContentLayaout>
   );
 };

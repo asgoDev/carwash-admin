@@ -1,7 +1,8 @@
-import React from "react";
+import DynamicForm from "./DynamicForm";
+import newClientFormConfig from "../data/newClientFormConfig";
 
 const NewClientForm = () => {
-  return <div>NewClientForm</div>;
+  return <DynamicForm config={newClientFormConfig} />;
 };
 
 export default NewClientForm;
