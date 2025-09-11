@@ -5,6 +5,7 @@ import Services from "./pages/Services";
 import Payments from "./pages/Payments";
 import ClientsList from "./pages/ClientsList.jsx";
 import ClientDetail from "./pages/ClientDetail.jsx";
+import NewClient from "./pages/NewClient.jsx";
 import { LayoutDashboard, Users, UserCog, Car, CreditCard } from "lucide-react";
 
 const routes = [
@@ -19,7 +20,7 @@ const routes = [
     name: "Clientes",
     icon: <Users size={24} />,
     sublist: [
-      { path: "/clients/new", name: "Registrar", element: <ClientDetail /> },
+      { path: "/clients/new", name: "Registrar", element: <NewClient /> },
       { path: "/clients/list", name: "Listado", element: <ClientsList /> },
     ],
   },
