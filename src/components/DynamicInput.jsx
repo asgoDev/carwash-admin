@@ -25,7 +25,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
   };
 
   return (
-    <div className="w-full mb-2">
+    <div className="w-full mb-2 ">
       {label && (
         <label
           htmlFor={name}
@@ -35,10 +35,10 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
         </label>
       )}
       {type === "select" ? (
-        <div className="relative">
+        <div className="relative ">
           <select
             id={name}
-            className="w-full p-2 rounded border border-gray-300 bg-white text-gray-800 text-base outline-none"
+            className="w-full p-2 rounded border-l-5 border-b-1 border-gray-300 transition-border duration-300 focus-within:border-blue-500 bg-white text-gray-800 text-base outline-none"
             name={name}
             defaultValue=""
             {...register(name, {
@@ -58,7 +58,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
           </select>
         </div>
       ) : (
-        <div className="flex rounded border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 overflow-hidden relative">
+        <div className="flex rounded border-l-5 border-b-1 border-w-5e border-gray-300 transition-border duration-300 focus-within:border-blue-500 overflow-hidden relative ">
           <input
             id={name}
             defaultValue={defaultValue}
