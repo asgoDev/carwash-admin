@@ -16,7 +16,7 @@ const DynamicForm = ({ config }) => {
   });
 
   return (
-    <form className="flex flex-col  gap-1" onSubmit={onSubmit}>
+    <form className="flex flex-col gap-1" onSubmit={onSubmit}>
       {inputsConfig.map((inputConfig, i) => (
         <DynamicInput
           key={i}

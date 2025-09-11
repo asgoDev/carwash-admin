@@ -25,7 +25,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
   };
 
   return (
-    <div className="w-full max-w-md mb-2">
+    <div className="w-full mb-2">
       {label && (
         <label
           htmlFor={name}
