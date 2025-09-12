@@ -1,7 +1,7 @@
-import React from "react";
+import ContentLayaout from "../components/ContentLayout";
 
 const Payments = () => {
-  return <div>Payments</div>;
+  return <ContentLayaout title="Pagos" />;
 };
 
 export default Payments;

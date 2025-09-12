@@ -1,9 +1,7 @@
-import React from 'react'
+import ContentLayaout from "../components/ContentLayout";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <ContentLayaout title="Resumen"></ContentLayaout>;
+};
 
-export default Dashboard
+export default Dashboard;

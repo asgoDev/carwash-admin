@@ -1,9 +1,7 @@
-import React from 'react'
+import ContentLayaout from "../components/ContentLayout";
 
 const Employees = () => {
-  return (
-    <div>Employees</div>
-  )
-}
+  return <ContentLayaout title="Empleados" />;
+};
 
-export default Employees
+export default Employees;
