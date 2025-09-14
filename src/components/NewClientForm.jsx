@@ -1,8 +1,8 @@
 import DynamicForm from "./DynamicForm";
-import newClientFormConfig from "../data/newClientFormConfig";
+import createClientFormConfig from "../data/createClientFormConfig";
 
 const NewClientForm = () => {
-  return <DynamicForm config={newClientFormConfig} />;
+  return <DynamicForm config={createClientFormConfig} />;
 };
 
 export default NewClientForm;

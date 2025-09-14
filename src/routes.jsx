@@ -1,11 +1,10 @@
 import Dashboard from "./pages/Dashboard";
-import Clients from "./pages/Clients";
-import Employees from "./pages/Employees";
 import Services from "./pages/Services";
 import Payments from "./pages/Payments";
 import ClientsList from "./pages/ClientsList.jsx";
 import ClientDetail from "./pages/ClientDetail.jsx";
-import NewClient from "./pages/NewClient.jsx";
+import CreateClient from "./pages/CreateClient.jsx";
+import CreateEmployee from "./pages/CreateEmployee.jsx";
 import { LayoutDashboard, Users, UserCog, Car, CreditCard } from "lucide-react";
 
 const routes = [
@@ -20,17 +19,23 @@ const routes = [
     name: "Clientes",
     icon: <Users size={24} />,
     sublist: [
-      { path: "/clients/new", name: "Registrar", element: <NewClient /> },
-      { path: "/clients/list", name: "Listado", element: <ClientsList /> },
+      { path: "/clients/new", name: "Registrar", element: <CreateClient /> },
+      { path: "/clients", name: "Listado", element: <ClientsList /> },
     ],
   },
 
   // { path: "/clients/:id", name: "Client Detail", element: <ClientDetail /> },
   {
-    path: "/employees",
     name: "Empleados",
-    element: <Employees />,
     icon: <UserCog size={24} />,
+    sublist: [
+      {
+        path: "/employees/new",
+        name: "Registrar",
+        element: <CreateEmployee />,
+      },
+      { path: "/employees", name: "Listado", element: <CreateEmployee /> },
+    ],
   },
   {
     path: "/services",

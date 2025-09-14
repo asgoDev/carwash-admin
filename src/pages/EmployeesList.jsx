@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ContentLayout from "../components/ContentLayout";
 import ResumeCard from "../components/ResumeCard";
 
-export default function ClientsList() {
+export default function EmployeesList() {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

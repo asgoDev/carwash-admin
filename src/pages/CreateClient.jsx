@@ -1,11 +1,11 @@
-import ContentLayaout from "../components/ContentLayout";
+import ContentLayout from "../components/ContentLayout";
 import NewClientForm from "../components/NewClientForm";
 
 const NewClient = () => {
   return (
-    <ContentLayaout title="Registro">
+    <ContentLayout title="Registro">
       <NewClientForm />
-    </ContentLayaout>
+    </ContentLayout>
   );
 };
 
