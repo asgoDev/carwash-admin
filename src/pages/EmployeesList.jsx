@@ -11,7 +11,7 @@ export default function EmployeesList() {
   // Función para obtener clientes desde backend
   const fetchClients = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/clients");
+      const response = await fetch("http://localhost:5000/api/employees");
       if (!response.ok) throw new Error("Error cargando listado de clientes");
       const data = await response.json();
       setClients(data);

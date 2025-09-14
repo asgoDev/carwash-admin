@@ -35,11 +35,11 @@ export default function ClientsList() {
       {clients.length === 0 ? (
         <p>No clients found</p>
       ) : (
-        <div className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4">
           {clients.map((client) => {
-            return <ResumeCard key={client.id} data={client} />;
+            return <ResumeCard key={client.id} data={client} path="/clients" />;
           })}
-        </div>
+        </ul>
       )}
     </ContentLayout>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ContentLayout from "../components/ContentLayout";
 
 export default function ClientDetail() {
   const { id } = useParams();
@@ -48,8 +49,7 @@ export default function ClientDetail() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Client Detail</h2>
+    <ContentLayout title={`${client.firstName} ${client.lastName}`}>
       <form>
         <label>
           First Name:
@@ -127,6 +127,6 @@ export default function ClientDetail() {
           Save
         </button>
       </form>
-    </div>
+    </ContentLayout>
   );
 }

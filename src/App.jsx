@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import routes from "./routes.jsx";
+import Detail from "./pages/Detail.jsx";
+import ClientDetail from "./pages/ClientDetail.jsx";
 
 export default function App() {
   return (
@@ -16,6 +18,7 @@ export default function App() {
               ))
             )
           )}
+          <Route key="/clients/:id" path="/clients/:id" element={<Detail />} />
         </Routes>
       </Layout>
     </Router>

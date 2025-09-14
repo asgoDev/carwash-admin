@@ -5,6 +5,7 @@ import ClientsList from "./pages/ClientsList.jsx";
 import ClientDetail from "./pages/ClientDetail.jsx";
 import CreateClient from "./pages/CreateClient.jsx";
 import CreateEmployee from "./pages/CreateEmployee.jsx";
+import EmployeesList from "./pages/EmployeesList.jsx";
 import { LayoutDashboard, Users, UserCog, Car, CreditCard } from "lucide-react";
 
 const routes = [
@@ -34,7 +35,7 @@ const routes = [
         name: "Registrar",
         element: <CreateEmployee />,
       },
-      { path: "/employees", name: "Listado", element: <CreateEmployee /> },
+      { path: "/employees", name: "Listado", element: <EmployeesList /> },
     ],
   },
   {

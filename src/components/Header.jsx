@@ -3,11 +3,12 @@ import routes from "../routes.jsx";
 
 export default function Header() {
   const location = useLocation();
+  const currentPath = `/${location.pathname.split("/")[1]}`;
   const current = routes.find((r) =>
     r.path
-      ? r.path === location.pathname
-      : r.sublist?.some((s) => s.path === location.pathname)
-      ? r.sublist.find((s) => s.path === location.pathname)
+      ? r.path === currentPath
+      : r.sublist?.some((s) => s.path === currentPath)
+      ? r.sublist.find((s) => s.path === currentPath)
       : null
   );
 
