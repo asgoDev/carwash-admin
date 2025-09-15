@@ -8,6 +8,7 @@ export default function ClientDetail() {
   const [client, setClient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
     const fetchClient = async () => {
@@ -49,83 +50,100 @@ export default function ClientDetail() {
   if (error) return <p>{error}</p>;
 
   return (
-    <ContentLayout title={`${client.firstName} ${client.lastName}`}>
-      <form>
+    <ContentLayout title={"Informacion general"}>
+      <form className="flex flex-col gap-2">
         <label>
-          First Name:
+          <span className="font-bold">C. I.: </span>
+          <input
+            name="id"
+            value={client.id || ""}
+            onChange={handleChange}
+            disabled={true}
+          />
+        </label>
+        <label>
+          <span className="font-bold">Nombre: </span>
           <input
             name="firstName"
             value={client.firstName || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Last Name:
+          <span className="font-bold">Apellido: </span>
           <input
             name="lastName"
             value={client.lastName || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Phone:
+          <span className="font-bold">Teléfono: </span>
           <input
             name="phone"
             value={client.phone || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Email:
+          <span className="font-bold">Correo Electrónico: </span>
           <input
             name="email"
             value={client.email || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Vehicle Type:
+          <span className="font-bold">Tipo de vehículo: </span>
           <input
             name="vehicleType"
             value={client.vehicleType || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Brand:
+          <span className="font-bold">Marca: </span>
           <input
             name="brand"
             value={client.brand || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Model:
+          <span className="font-bold">Modelo: </span>
           <input
             name="model"
             value={client.model || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
+
         <label>
-          Plate:
+          <span className="font-bold">Placa: </span>
           <input
             name="plate"
             value={client.plate || ""}
             onChange={handleChange}
+            disabled={isDisabled}
           />
         </label>
-        <br />
-        <button type="button" onClick={handleSave}>
+
+        {/* <button type="button" onClick={handleSave}>
           Save
-        </button>
+        </button> */}
       </form>
     </ContentLayout>
   );
