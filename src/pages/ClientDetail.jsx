@@ -8,7 +8,12 @@ export default function ClientDetail() {
   const [client, setClient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const editMode = (e) => {
+    e.preventDefault();
+    setIsDisabled(!isDisabled);
+  };
 
   useEffect(() => {
     const fetchClient = async () => {
@@ -102,48 +107,43 @@ export default function ClientDetail() {
         </label>
 
         <label>
-          <span className="font-bold">Tipo de vehículo: </span>
-          <input
+          <span className="font-bold">Vehículos: </span>
+          {/* <input
             name="vehicleType"
             value={client.vehicleType || ""}
             onChange={handleChange}
             disabled={isDisabled}
-          />
-        </label>
+          /> */}
 
-        <label>
-          <span className="font-bold">Marca: </span>
-          <input
-            name="brand"
-            value={client.brand || ""}
-            onChange={handleChange}
-            disabled={isDisabled}
-          />
-        </label>
-
-        <label>
-          <span className="font-bold">Modelo: </span>
-          <input
-            name="model"
-            value={client.model || ""}
-            onChange={handleChange}
-            disabled={isDisabled}
-          />
-        </label>
-
-        <label>
-          <span className="font-bold">Placa: </span>
-          <input
-            name="plate"
-            value={client.plate || ""}
-            onChange={handleChange}
-            disabled={isDisabled}
-          />
+          <table>
+            <thead>
+              <tr>
+                <td>n</td>
+                <td>Tipo</td>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Placa</td>
+              </tr>
+            </thead>
+            {client.vehicles.map((vehicle, i) => (
+              <tbody>
+                <tr>
+                  <td>{i}</td>
+                  <td>{vehicle.type}</td>
+                  <td>{vehicle.brand}</td>
+                  <td>{vehicle.model}</td>
+                  <td>{vehicle.plate}</td>
+                </tr>
+              </tbody>
+            ))}
+          </table>
         </label>
 
         {/* <button type="button" onClick={handleSave}>
           Save
         </button> */}
+
+        <button onClick={editMode}>editar</button>
       </form>
     </ContentLayout>
   );

@@ -1,20 +1,27 @@
 const newClientFormConfig = {
   submitFx: async (data) => {
+    const { brand, model, plate, vehicleType, ...clientData } = data;
+    const transformedData = {
+      ...clientData,
+      vehicles: {
+        type: vehicleType,
+        brand,
+        model,
+        plate,
+      },
+    };
     try {
       const response = await fetch("http://localhost:5000/api/clients", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(transformedData),
       });
       if (!response.ok) throw new Error("Error guardando cliente");
       const result = await response.json();
       console.log("Guardado:", result);
-      // Puedes mostrar un mensaje de éxito aquí si lo deseas
     } catch (error) {
       console.error(error);
-      // Puedes mostrar un mensaje de error aquí si lo deseas
     }
-    
   },
   submitLabel: "Agregar Cliente",
   inputsConfig: [
@@ -89,7 +96,7 @@ const newClientFormConfig = {
         "SUV",
         "Pickup",
         "Van",
-        "Otro"
+        "Otro",
       ],
     },
     {
@@ -130,7 +137,7 @@ const newClientFormConfig = {
         "Supra",
         "Horse",
         "UM Venezuela",
-        "Otra"
+        "Otra",
       ],
     },
     {
