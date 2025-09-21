@@ -56,7 +56,7 @@ export default function ClientDetail() {
 
   return (
     <ContentLayout title={"Informacion general"}>
-      <form className="flex flex-col gap-2 overflow-x-auto ">
+      <form className="flex flex-col gap-2 max-w-full">
         <label>
           <span className="font-bold">C. I.: </span>
           <input
@@ -108,7 +108,7 @@ export default function ClientDetail() {
 
         <span className="font-bold">Vehículos: </span>
 
-        <div className="max-w-[85%] sm:max-w-full overflow-hidden">
+        <div className="max-w-[85%] sm:max-w-full overflow-x-auto">
           <table className=" mt-2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg sm:rounded-lg overflow-hidden">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-400">
               <tr>

@@ -9,7 +9,9 @@ export default function Layout({ children }) {
       <div className="flex-1 flex flex-col md:rounded-2xl overflow-x-hidden md:shadow-lg bg-gray-100">
         <Header />
         {/* <div className="flex-1 p-6 overflow-y-auto">{children}</div> */}
-        <div className="flex-1 overflow-y-auto relative">{children}</div>
+        <div className="flex-1 overflow-y-auto relative overflow-x-hidden">
+          {children}
+        </div>
       </div>
     </div>
   );
