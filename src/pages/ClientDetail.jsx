@@ -47,7 +47,21 @@ export default function ClientDetail() {
       alert("Client updated successfully!");
       navigate("/clients/list");
     } catch (err) {
-      alert("Error updating client: " + err.message);
+      alert("Error actualizando cliente: " + err.message);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/clients/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error("Error eliminando cliente");
+      alert("Cliente eliminado satisfactoriamente");
+      navigate("/clients/list");
+    } catch (err) {
+      alert("Error eliminando cliente: " + err.message);
     }
   };
 
@@ -147,7 +161,20 @@ export default function ClientDetail() {
             </tbody>
           </table>
         </div>
-        <button onClick={editMode}>editar</button>
+        <div className="flex gap-2">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-2 w-32"
+            onClick={editMode}
+          >
+            Editar
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-2 w-32"
+            onClick={handleDelete}
+          >
+            Eliminar
+          </button>
+        </div>
       </form>
     </ContentLayout>
   );
