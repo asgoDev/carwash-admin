@@ -18,7 +18,7 @@ const newClientFormConfig = {
       });
       if (!response.ok) throw new Error("Error guardando cliente");
       const result = await response.json();
-      console.log("Guardado:", result);
+      return result;
     } catch (error) {
       console.error(error);
     }

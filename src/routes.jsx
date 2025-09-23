@@ -20,7 +20,7 @@ const routes = [
     name: "Clientes",
     icon: <Users size={24} />,
     sublist: [
-      { path: "/clients/new", name: "Registrar", element: <CreateClient /> },
+      { path: "/clients/create", name: "Registrar", element: <CreateClient /> },
       { path: "/clients", name: "Listado", element: <ClientsList /> },
     ],
   },
@@ -31,7 +31,7 @@ const routes = [
     icon: <UserCog size={24} />,
     sublist: [
       {
-        path: "/employees/new",
+        path: "/employees/create",
         name: "Registrar",
         element: <CreateEmployee />,
       },

@@ -66,6 +66,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
             name={name}
             type={type}
             placeholder={label}
+            autoComplete="off"
             {...register(name, {
               required: { value: true, message: "Campo obligatorio" },
               ...params,

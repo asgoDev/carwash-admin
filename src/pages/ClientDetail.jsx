@@ -45,21 +45,21 @@ export default function ClientDetail() {
       });
       if (!res.ok) throw new Error("Failed to update client");
       alert("Client updated successfully!");
-      navigate("/clients/list");
+      navigate("/clients");
     } catch (err) {
       alert("Error actualizando cliente: " + err.message);
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     try {
       const res = await fetch(`http://localhost:5000/api/clients/${id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
       });
       if (!res.ok) throw new Error("Error eliminando cliente");
       alert("Cliente eliminado satisfactoriamente");
-      navigate("/clients/list");
+      navigate("/clients");
     } catch (err) {
       alert("Error eliminando cliente: " + err.message);
     }
