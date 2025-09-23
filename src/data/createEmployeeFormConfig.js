@@ -14,7 +14,6 @@ const newClientFormConfig = {
       console.error(error);
       // Puedes mostrar un mensaje de error aquí si lo deseas
     }
-    
   },
   submitLabel: "Agregar Cliente",
   inputsConfig: [
@@ -47,11 +46,23 @@ const newClientFormConfig = {
       name: "lastName",
       type: "text",
       params: {
-        required: "EL apellido del cliente es obligatorio",
+        required: "El apellido del cliente es obligatorio",
         pattern: {
           value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/,
           message: "Solo se permiten letras",
         },
+      },
+    },
+    {
+      label: "Fecha de nacimiento",
+      name: "birth",
+      type: "date",
+      params: {
+        required: "Fecha de nacimiento obligatoria",
+        // pattern: {
+        //   value: /^\S+@\S+$/i,
+        //   message: "Dirección de correo no válida",
+        // },
       },
     },
     {
@@ -77,7 +88,14 @@ const newClientFormConfig = {
         },
       },
     },
-    
+    {
+      label: "Direccion de residencia",
+      name: "address",
+      type: "text",
+      params: {
+        required: "Debe ingresar una dirección",
+      },
+    },
   ],
 };
 
