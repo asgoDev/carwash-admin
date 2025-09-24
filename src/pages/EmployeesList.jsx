@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ContentLayout from "../components/ContentLayout";
 import ResumeCard from "../components/ResumeCard";
 
-export default function EmployeesList() {
+export default function ClientsList() {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,11 +35,13 @@ export default function EmployeesList() {
       {clients.length === 0 ? (
         <p>No clients found</p>
       ) : (
-        <div className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4">
           {clients.map((client) => {
-            return <ResumeCard key={client.id} data={client} />;
+            return (
+              <ResumeCard key={client.id} data={client} path="/employees" />
+            );
           })}
-        </div>
+        </ul>
       )}
     </ContentLayout>
   );

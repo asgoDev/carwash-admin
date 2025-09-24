@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import routes from "./routes.jsx";
 import ClientDetail from "./pages/ClientDetail.jsx";
+import EmployeeDetail from "./pages/EmployeeDetail.jsx";
 
 export default function App() {
   return (
@@ -21,6 +22,11 @@ export default function App() {
             key="/clients/:id"
             path="/clients/:id"
             element={<ClientDetail />}
+          />
+          <Route
+            key="/employees/:id"
+            path="/employees/:id"
+            element={<EmployeeDetail />}
           />
         </Routes>
       </Layout>

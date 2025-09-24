@@ -16,11 +16,11 @@ const DynamicForm = ({ config }) => {
   const onValidSubmit = async (data) => {
     const resp = await submitFx(data);
     if (resp) {
-      alert("Cliente guardado correctamente");
+      alert("Guardado correctamente");
       console.log(resp);
       reset();
     } else {
-      alert("Error al guardar cliente");
+      alert("Error guardando recurso");
     }
   };
 

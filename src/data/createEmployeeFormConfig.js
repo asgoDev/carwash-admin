@@ -1,21 +1,21 @@
 const newClientFormConfig = {
   submitFx: async (data) => {
     try {
-      const response = await fetch("http://localhost:5000/api/clients", {
+      const response = await fetch("http://localhost:5000/api/employees", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Error guardando cliente");
+      if (!response.ok) throw new Error("Error guardando empleado");
       const result = await response.json();
-      console.log("Guardado:", result);
+      return result;
       // Puedes mostrar un mensaje de éxito aquí si lo deseas
     } catch (error) {
       console.error(error);
       // Puedes mostrar un mensaje de error aquí si lo deseas
     }
   },
-  submitLabel: "Agregar Cliente",
+  submitLabel: "Registrar Empleado",
   inputsConfig: [
     {
       label: "C. I.",
