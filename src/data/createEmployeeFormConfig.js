@@ -1,6 +1,8 @@
 const newClientFormConfig = {
   submitFx: async (data) => {
     try {
+      console.log(data);
+
       const response = await fetch("http://localhost:5000/api/employees", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -55,7 +57,7 @@ const newClientFormConfig = {
     },
     {
       label: "Fecha de nacimiento",
-      name: "birth",
+      name: "birthDate",
       type: "date",
       params: {
         required: "Fecha de nacimiento obligatoria",

@@ -119,8 +119,24 @@ export default function EmployeeDetail() {
             disabled={isDisabled}
           />
         </label>
-
-        <span className="font-bold">Vehículos: </span>
+        <label>
+          <span className="font-bold">Dirección de residencia: </span>
+          <input
+            name="email"
+            value={employee.address || ""}
+            onChange={handleChange}
+            disabled={isDisabled}
+          />
+        </label>
+        <label>
+          <span className="font-bold">Fecha de nacimiento: </span>
+          <input
+            name="email"
+            value={employee?.birthDate.split("-").reverse().join("/") || ""}
+            onChange={handleChange}
+            disabled={isDisabled}
+          />
+        </label>
 
         <div className="flex gap-2">
           <button
