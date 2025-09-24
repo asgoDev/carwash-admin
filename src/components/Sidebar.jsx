@@ -5,7 +5,7 @@ import routes from "../routes.jsx";
 import NavBar from "./NavBar.jsx";
 
 export default function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
 
   const closeMenu = () => {

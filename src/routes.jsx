@@ -46,7 +46,7 @@ const routes = [
   },
   {
     path: "/payments",
-    name: "Tickets",
+    name: "Facturación",
     element: <Payments />,
     icon: <CreditCard size={24} />,
   },
