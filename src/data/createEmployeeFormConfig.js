@@ -22,7 +22,7 @@ const newClientFormConfig = {
     {
       label: "C. I.",
       name: "id",
-      type: "text",
+      type: "number",
       params: {
         required: "Cédula obligatoria",
         pattern: {
