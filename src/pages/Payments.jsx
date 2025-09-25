@@ -9,6 +9,15 @@ const Payments = () => {
   const [client, setClient] = useState(null);
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
+  const [total, setTotal] = useState(0);
+
+  const servicesList = {
+    simple: 5,
+    motor: 3,
+    completo: 10,
+    pulitura: 4,
+    premium: 15,
+  };
 
   const watchAll = watch();
 
@@ -28,9 +37,7 @@ const Payments = () => {
   };
 
   const handleSearch = (id) => {
-    // const idWhitoutLetters = id.replace(/[a-zA-Z]/g, '');
-    // if (isNaN(idWhitoutLetters)) return alert('Dato inválido');
-
+    if (!id) return;
     fetchClient(id);
   };
 
@@ -51,18 +58,27 @@ const Payments = () => {
     fetchEmployees();
   }, []);
 
+  useEffect(() => {
+    if (!watchAll.services) return;
+    let total = 0;
+    watchAll.services.forEach((service) => {
+      total += servicesList[service];
+    });
+    setTotal(total);
+  }, [watchAll.services]);
+
   return (
-    <ContentLayout title="Registrar pago">
+    <ContentLayout title="Crear ticket">
       <form>
-        <section className="mb-4  px-4">
+        <section className="mb-4 px-4">
           <h2 className="text-2xl border-b py-2 px-4 border-gray-300">
             Cliente
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <div className="flex rounded border-l-5 border-b-1 border-w-5e border-gray-300 transition-border duration-300 focus-within:border-blue-500 overflow-hidden relative ">
+            <div className="flex flex-1 rounded border-l-5 border-b-1 border-w-5e border-gray-300 transition-border duration-300 focus-within:border-blue-500 overflow-hidden relative min-w-[50px]">
               <input
                 id="ci"
-                className="flex-grow p-2 text-gray-800 bg-white text-base outline-none border-none"
+                className="p-2 flex-grow text-gray-800 bg-white text-base outline-none border-none"
                 type="number"
                 placeholder="C. I. del cliente"
                 autoComplete="off"
@@ -70,9 +86,11 @@ const Payments = () => {
                   required: { value: true, message: "Campo obligatorio" },
                 })}
               />
+
+              {/* Este boton deberia cambiar por otro que formatee el formulario general */}
               <button
                 type="button"
-                className="bg-gray-900 text-blue-100  px-3 text-xl border-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                className="bg-gray-900 text-blue-100 px-3 text-xl border-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 absolute right-0 top-0 h-full"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSearch(watchAll.ci);
@@ -94,7 +112,7 @@ const Payments = () => {
                   Nombre completo: {`${client.firstName} ${client.lastName}`}
                 </span>
                 <span>Fecha de ultimo lavado: 15/05/2025</span>
-                <pre>{JSON.stringify(client, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(watchAll, null, 2)}</pre> */}
               </>
             )}
           </div>
@@ -104,7 +122,10 @@ const Payments = () => {
             Vehiculo
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <select className="bg-white p-2 rounded w-full capitalize">
+            <select
+              className="capitalize w-full p-2 rounded border-l-5 border-b-1 border-gray-300 transition-border duration-300 focus-within:border-blue-500 bg-white text-gray-800 text-base outline-none"
+              {...register("vehicle")}
+            >
               <option className="" value="">
                 Selecciona un vehiculo
               </option>
@@ -124,16 +145,40 @@ const Payments = () => {
           </h2>
           <div className="p-4 flex flex-col gap-2">
             <label>
-              Lavado simple: <input type="checkbox" />
+              Lavado simple:{" "}
+              <input value="simple" type="checkbox" {...register("services")} />
             </label>
             <label>
-              Pulitura: <input type="checkbox" />
+              Pulitura:{" "}
+              <input
+                type="checkbox"
+                value={"pulitura"}
+                {...register("services")}
+              />
             </label>
             <label>
-              Motor: <input type="checkbox" />
+              Motor:{" "}
+              <input
+                type="checkbox"
+                value={"motor"}
+                {...register("services")}
+              />
             </label>
             <label>
-              Lavado Premium: <input type="checkbox" />
+              Lavado Completo:{" "}
+              <input
+                type="checkbox"
+                value={"completo"}
+                {...register("services")}
+              />
+            </label>
+            <label>
+              Lavado Premium:{" "}
+              <input
+                type="checkbox"
+                value={"premium"}
+                {...register("services")}
+              />
             </label>
           </div>
         </section>
@@ -142,7 +187,10 @@ const Payments = () => {
             Empleado asignado
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <select className="bg-white p-2 rounded w-full capitalize">
+            <select
+              className="w-full p-2 rounded border-l-5 border-b-1 border-gray-300 transition-border duration-300 focus-within:border-blue-500 bg-white text-gray-800 text-base outline-none capitalize"
+              {...register("employee")}
+            >
               <option className="" value="">
                 Seleccione un empleado
               </option>
@@ -167,7 +215,7 @@ const Payments = () => {
             </p>
             <p className="flex justify-between text-lg font-bold">
               <span>TOTAL: </span>
-              <span>5$</span>
+              <span>{total} $</span>
             </p>
             <p className="flex justify-between  font-bold">
               <span></span>
@@ -175,6 +223,11 @@ const Payments = () => {
             </p>
           </div>
         </section>
+        <input
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-2"
+          value="Crear ticket"
+        />
       </form>
     </ContentLayout>
   );
