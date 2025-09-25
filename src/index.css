@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import "tailwindcss";
 
 
@@ -10,4 +11,9 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield; /* Para Firefox */
     appearance: none; /* Estándar futuro, por si acaso */
+}
+
+html {
+    /* font-family: 'Montserrat', sans-serif; */
+
 }

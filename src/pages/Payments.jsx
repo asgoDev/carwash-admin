@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import ContentLayout from "../components/ContentLayout";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Payments = () => {
   const { register, handleSubmit, watch } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [client, setClient] = useState(null);
+  const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
 
   const watchAll = watch();
@@ -33,6 +34,23 @@ const Payments = () => {
     fetchClient(id);
   };
 
+  const fetchEmployees = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/employees");
+      if (!res.ok) throw new Error("Failed to fetch employees");
+      const data = await res.json();
+      setEmployees(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
   return (
     <ContentLayout title="Registrar pago">
       <form>
@@ -54,7 +72,7 @@ const Payments = () => {
               />
               <button
                 type="button"
-                className="bg-gray-900 text-blue-100  px-3 text-xl border-none cursor-pointer disabled:opacity-50"
+                className="bg-gray-900 text-blue-100  px-3 text-xl border-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSearch(watchAll.ci);
@@ -86,11 +104,15 @@ const Payments = () => {
             Vehiculo
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <select className="bg-white p-2 rounded w-full">
-              <option value="">Selecciona un vehiculo</option>
+            <select className="bg-white p-2 rounded w-full capitalize">
+              <option className="" value="">
+                Selecciona un vehiculo
+              </option>
               {client?.vehicles.map((v) => (
-                <option key={v.plate} value={v.plate} className="capitalize">
-                  {`${v.brand}, ${v.model} - ${v.plate.toUpperCase()}`}
+                <option key={v.plate} value={v.plate}>
+                  {`${v.brand}, ${v.model} - ${v.plate.toUpperCase()} / ${
+                    v.type
+                  }`}
                 </option>
               ))}
             </select>
@@ -120,10 +142,15 @@ const Payments = () => {
             Empleado asignado
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <select className="bg-white p-2 rounded w-full">
-              <option value="">Luis Perez</option>
-              <option value="">Jose Lara</option>
-              <option value="">Jesus Lopez</option>
+            <select className="bg-white p-2 rounded w-full capitalize">
+              <option className="" value="">
+                Seleccione un empleado
+              </option>
+              {employees.map((e) => (
+                <option key={e.id} value={e.id}>
+                  {`${e.firstName} ${e.lastName}`}
+                </option>
+              ))}
             </select>
           </div>
         </section>

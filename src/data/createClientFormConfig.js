@@ -88,16 +88,7 @@ const newClientFormConfig = {
       label: "Tipo de vehículo",
       name: "vehicleType",
       type: "select",
-      options: [
-        "Automóvil",
-        "Motocicleta",
-        "Camioneta",
-        "Camión",
-        "SUV",
-        "Pickup",
-        "Van",
-        "Otro",
-      ],
+      options: ["moto", "carro", "camioneta", "camión"],
     },
     {
       label: "Marca",
