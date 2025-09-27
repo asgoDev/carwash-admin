@@ -2,13 +2,12 @@ import { useForm } from "react-hook-form";
 import ContentLayout from "../components/ContentLayout";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import SearchInput from "../components/SearchInput";
 
 const Payments = () => {
   const { register, handleSubmit, watch } = useForm();
-  const [isLoading, setIsLoading] = useState(false);
   const [client, setClient] = useState(null);
   const [employees, setEmployees] = useState([]);
-  const [error, setError] = useState(null);
   const [total, setTotal] = useState(0);
 
   const servicesList = {
@@ -21,26 +20,6 @@ const Payments = () => {
 
   const watchAll = watch();
 
-  const fetchClient = async (id) => {
-    if (!id) return;
-    setIsLoading(true);
-    try {
-      const res = await fetch(`http://localhost:5000/api/clients/${id}`);
-      if (!res.ok) throw new Error("Failed to fetch client");
-      const data = await res.json();
-      setClient(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSearch = (id) => {
-    if (!id) return;
-    fetchClient(id);
-  };
-
   const fetchEmployees = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/employees");
@@ -50,7 +29,7 @@ const Payments = () => {
     } catch (err) {
       setError(err.message);
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
@@ -75,7 +54,7 @@ const Payments = () => {
             Cliente
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            <div className="flex flex-1 rounded border-l-5 border-b-1 border-w-5e border-gray-300 transition-border duration-300 focus-within:border-blue-500 overflow-hidden relative min-w-[50px]">
+            {/* <div className="flex flex-1 rounded border-l-5 border-b-1 border-w-5e border-gray-300 transition-border duration-300 focus-within:border-blue-500 overflow-hidden relative min-w-[50px]">
               <input
                 id="ci"
                 className="p-2 flex-grow text-gray-800 bg-white text-base outline-none border-none"
@@ -86,14 +65,12 @@ const Payments = () => {
                   required: { value: true, message: "Campo obligatorio" },
                 })}
               />
-
-              {/* Este boton deberia cambiar por otro que formatee el formulario general */}
               <button
                 type="button"
                 className="bg-gray-900 text-blue-100 px-3 text-xl border-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 absolute right-0 top-0 h-full"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSearch(watchAll.ci);
+                  handleSearch(wathAll.ci);
                 }}
                 disabled={watchAll.ci?.length < 6}
               >
@@ -105,7 +82,20 @@ const Payments = () => {
                   size={24}
                 />
               </button>
-            </div>
+            </div> */}
+
+            <SearchInput
+              config={{
+                id: "ci",
+                register,
+                watch: watchAll,
+                path: "clients",
+                placeholder: "C. I. del cliente",
+                type: "number",
+                setResult: setClient,
+              }}
+            />
+
             {client && (
               <>
                 <span>
