@@ -134,12 +134,12 @@ const Payments = () => {
           <h2 className="text-2xl border-b py-2 px-4 border-gray-300">
             Servicio
           </h2>
-          <div className="p-4 flex flex-col gap-2">
-            <label>
+          <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+            <label className="flex justify-between">
               Lavado simple:{" "}
               <input value="simple" type="checkbox" {...register("services")} />
             </label>
-            <label>
+            <label className="flex justify-between">
               Pulitura:{" "}
               <input
                 type="checkbox"
@@ -147,7 +147,7 @@ const Payments = () => {
                 {...register("services")}
               />
             </label>
-            <label>
+            <label className="flex justify-between">
               Motor:{" "}
               <input
                 type="checkbox"
@@ -155,7 +155,7 @@ const Payments = () => {
                 {...register("services")}
               />
             </label>
-            <label>
+            <label className="flex justify-between">
               Lavado Completo:{" "}
               <input
                 type="checkbox"
@@ -163,7 +163,7 @@ const Payments = () => {
                 {...register("services")}
               />
             </label>
-            <label>
+            <label className="flex justify-between">
               Lavado Premium:{" "}
               <input
                 type="checkbox"
