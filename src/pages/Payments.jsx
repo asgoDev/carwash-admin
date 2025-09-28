@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SearchInput from "../components/SearchInput";
 
 const Payments = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
   const [client, setClient] = useState(null);
   const [employees, setEmployees] = useState([]);
   const [total, setTotal] = useState(0);
@@ -88,11 +88,12 @@ const Payments = () => {
               config={{
                 id: "ci",
                 register,
-                watch: watchAll,
+                watch: watchAll.ci,
                 path: "clients",
                 placeholder: "C. I. del cliente",
                 type: "number",
                 setResult: setClient,
+                secondaryFx: reset,
               }}
             />
 
@@ -102,7 +103,7 @@ const Payments = () => {
                   Nombre completo: {`${client.firstName} ${client.lastName}`}
                 </span>
                 <span>Fecha de ultimo lavado: 15/05/2025</span>
-                {/* <pre>{JSON.stringify(watchAll, null, 2)}</pre> */}
+                <pre>{JSON.stringify(watchAll, null, 2)}</pre>
               </>
             )}
           </div>
