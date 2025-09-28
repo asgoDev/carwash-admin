@@ -75,7 +75,7 @@ export default function ClientDetail() {
           <span className="font-bold">C. I.: </span>
           <input
             name="id"
-            value={client.id || ""}
+            value={client.ci || ""}
             onChange={handleChange}
             disabled={true}
           />

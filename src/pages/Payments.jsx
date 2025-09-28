@@ -186,7 +186,7 @@ const Payments = () => {
                 Seleccione un empleado
               </option>
               {employees.map((e) => (
-                <option key={e.id} value={e.id}>
+                <option key={e._id} value={e._id}>
                   {`${e.firstName} ${e.lastName}`}
                 </option>
               ))}

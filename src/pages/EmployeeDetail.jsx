@@ -75,7 +75,7 @@ export default function EmployeeDetail() {
           <span className="font-bold">C. I.: </span>
           <input
             name="id"
-            value={employee.id || ""}
+            value={employee.ci || ""}
             onChange={handleChange}
             disabled={true}
           />

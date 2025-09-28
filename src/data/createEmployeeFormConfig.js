@@ -1,8 +1,6 @@
 const newClientFormConfig = {
   submitFx: async (data) => {
     try {
-      console.log(data);
-
       const response = await fetch("http://localhost:5000/api/employees", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -11,17 +9,15 @@ const newClientFormConfig = {
       if (!response.ok) throw new Error("Error guardando empleado");
       const result = await response.json();
       return result;
-      // Puedes mostrar un mensaje de éxito aquí si lo deseas
     } catch (error) {
       console.error(error);
-      // Puedes mostrar un mensaje de error aquí si lo deseas
     }
   },
   submitLabel: "Registrar Empleado",
   inputsConfig: [
     {
       label: "C. I.",
-      name: "id",
+      name: "ci",
       type: "number",
       params: {
         required: "Cédula obligatoria",

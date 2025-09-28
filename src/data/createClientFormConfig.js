@@ -10,6 +10,7 @@ const newClientFormConfig = {
         plate,
       },
     };
+
     try {
       const response = await fetch("http://localhost:5000/api/clients", {
         method: "POST",
@@ -27,7 +28,7 @@ const newClientFormConfig = {
   inputsConfig: [
     {
       label: "C. I.",
-      name: "id",
+      name: "ci",
       type: "number",
       params: {
         required: "Cédula obligatoria",

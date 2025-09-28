@@ -38,7 +38,7 @@ export default function ClientsList() {
         <ul className="flex flex-col gap-4">
           {clients.map((client) => {
             return (
-              <ResumeCard key={client.id} data={client} path="/employees" />
+              <ResumeCard key={client._id} data={client} path="/employees" />
             );
           })}
         </ul>
