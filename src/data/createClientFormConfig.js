@@ -65,7 +65,7 @@ const newClientFormConfig = {
     {
       label: "Teléfono",
       name: "phone",
-      type: "text",
+      type: "number",
       params: {
         required: "Nro de teléfono obligatorio",
         pattern: {

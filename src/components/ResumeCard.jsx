@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 const ResumeCard = ({ data, path }) => {
   const { _id, ci, firstName = "hey", lastName } = data;
-  console.log(_id);
-
   return (
     <li className="bg-white border-l-5 border-b-1 border-gray-300 rounded-lg hover:border-blue-500 hover:scale-[1.01] transition-all duration-100 cursor-pointer shadow-md">
       <Link to={`${path}/${_id}`} className="block px-4 py-2">
