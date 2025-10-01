@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ContentLayout from "../components/ContentLayout";
+import { transformDate } from "../utils/transformDate";
 
 export default function EmployeeDetail() {
   const { id } = useParams();
@@ -132,7 +133,7 @@ export default function EmployeeDetail() {
           <span className="font-bold">Fecha de nacimiento: </span>
           <input
             name="email"
-            value={employee?.birthDate.split("-").reverse().join("/") || ""}
+            value={transformDate(employee.birthDate)}
             onChange={handleChange}
             disabled={isDisabled}
           />

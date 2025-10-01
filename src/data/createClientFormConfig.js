@@ -3,12 +3,14 @@ const newClientFormConfig = {
     const { brand, model, plate, vehicleType, ...clientData } = data;
     const transformedData = {
       ...clientData,
-      vehicles: {
-        type: vehicleType,
-        brand,
-        model,
-        plate,
-      },
+      vehicles: [
+        {
+          type: vehicleType,
+          brand,
+          model,
+          plate,
+        },
+      ],
     };
 
     try {
@@ -19,6 +21,8 @@ const newClientFormConfig = {
       });
       if (!response.ok) throw new Error("Error guardando cliente");
       const result = await response.json();
+      console.log(result);
+
       return result;
     } catch (error) {
       console.error(error);
