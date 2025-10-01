@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import { Menu, Sparkle } from "lucide-react";
 import { useState } from "react";
 import routes from "../routes.jsx";
 import NavBar from "./NavBar.jsx";
@@ -31,7 +31,15 @@ export default function Sidebar() {
 
           <Menu size={24} />
         </button>
-        <div className="">Shiny</div>
+        <div className="italic font-bold text-3xl flex items-center">
+          <span className="text-blue-500">S</span>hiny
+          <div className="relative">
+            <Sparkle
+              size={16}
+              className="text-white fill-white absolute top-[-17px] left-[0px]"
+            />
+          </div>
+        </div>
       </header>
 
       {/* Menu viejo */}
