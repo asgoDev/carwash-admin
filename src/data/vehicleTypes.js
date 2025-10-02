@@ -1,3 +1,3 @@
-const vehicleTypes = ["Moto", "Carro", "Camioneta", "Camión"];
+const vehicleTypes = ["moto", "carro", "camioneta", "camión", "buggy"];
 
 export default vehicleTypes;

@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
 
 const ResumeCard = ({ data, path }) => {
-  const { _id, ci, firstName = "hey", lastName } = data;
+  const { _id, ci, firstName = "hey", lastName, serviceName, price } = data;
   return (
     <li className="bg-white border-l-5 border-b-1 border-gray-300 rounded-lg hover:border-blue-500 hover:scale-[1.01] transition-all duration-100 cursor-pointer shadow-md">
       <Link to={`${path}/${_id}`} className="block px-4 py-2">
-        <span>{ci}</span>
-        <h3 className="text-xl font-semibold">{`${firstName} ${lastName}`}</h3>
+        {ci ? (
+          <>
+            <span>{ci}</span>
+            <h3 className="text-xl font-semibold">{`${firstName} ${lastName}`}</h3>
+          </>
+        ) : (
+          <>
+            <span>{serviceName}</span>
+            <h3 className="text-xl font-semibold">{`${price} $`}</h3>
+          </>
+        )}
       </Link>
     </li>
   );

@@ -28,6 +28,11 @@ export default function App() {
             path="/employees/:id"
             element={<EmployeeDetail />}
           />
+          <Route
+            key="/services/:id"
+            path="/services/:id"
+            element={<EmployeeDetail />}
+          />
         </Routes>
       </Layout>
     </Router>

@@ -9,6 +9,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
     params,
     inputFx,
     options,
+    decimal = false,
   } = config;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,6 +66,7 @@ const DynamicInput = ({ config, register, errors, setValue }) => {
             className="flex-grow p-2 text-gray-800 bg-white text-base outline-none border-none"
             name={name}
             type={type}
+            step={decimal ? "0.01" : undefined}
             placeholder={label}
             autoComplete="off"
             {...register(name, {
