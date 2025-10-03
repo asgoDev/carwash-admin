@@ -1,7 +1,6 @@
 import { Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// this input only search by id
 const SearchInput = ({
   config: {
     id,
@@ -22,12 +21,13 @@ const SearchInput = ({
     setIsLoading(true);
     setError(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/${path}/${id}`);
+      const res = await fetch(`http://localhost:5000/api/${path}?ci=${id}`);
+      const data = await res.json();
+
       if (!res.ok) {
         throw new Error("Error solicitando recurso");
       }
-      const data = await res.json();
-      setResult(data);
+      setResult(data[0]);
       if (secondaryFx) setSecondaryFxMode(true);
     } catch (err) {
       setError(err.message);
@@ -37,7 +37,6 @@ const SearchInput = ({
   };
 
   const handleSearch = (id) => {
-    // first it needs to validate (regEx)
     if (!id) return;
     if (!path) return console.log("path is required");
     fetchResource(id);
