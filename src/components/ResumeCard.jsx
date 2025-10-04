@@ -8,12 +8,12 @@ const ResumeCard = ({ data, path }) => {
         {ci ? (
           <>
             <span>{ci}</span>
-            <h3 className="text-xl font-semibold">{`${firstName} ${lastName}`}</h3>
+            <h3 className="text-xl font-semibold capitalize">{`${firstName} ${lastName}`}</h3>
           </>
         ) : (
           <>
             <span>{serviceName}</span>
-            <h3 className="text-xl font-semibold">{`${price} $`}</h3>
+            <h3 className="text-xl font-semibold capitalize">{`${price} $`}</h3>
           </>
         )}
       </Link>

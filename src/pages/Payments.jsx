@@ -197,7 +197,7 @@ const Payments = () => {
             Empleado asignado
           </h2>
           <div className="p-4 flex flex-col gap-2">
-            {employees.length > 0 ? (
+            {employees?.length > 0 ? (
               <select
                 className="w-full p-2 rounded border-l-5 border-b-1 border-gray-300 transition-border duration-300 focus-within:border-blue-500 bg-white text-gray-800 text-base outline-none capitalize"
                 {...register("employee")}
