@@ -1,4 +1,5 @@
 import useAppStore from "../store/appStore";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const DashboardLayout = () => {
   const clients = useAppStore((state) => state.clients);
@@ -11,7 +12,13 @@ const DashboardLayout = () => {
         <article className="aspect-[1.6/1] bg-white border-b-5 border-gray-300 rounded-lg hover:border-blue-500 hover:scale-[1.01] transition-all duration-100 cursor-pointer shadow-md overflow-hidden flex flex-col ">
           <header className="bg-gray-300 px-4 py-3">Tasa BCV</header>
           <div className="flex-grow-1 flex flex-col justify-center items-center">
-            <span className="font-bold text-2xl">{rate}</span>
+            <span className="font-bold text-2xl after:content-['Bs.'] after:text-base after:font-normal after:text-gray-500  after:text-sm">
+              {
+                typeof rate === "number"
+                  ? formatCurrency(rate)
+                  : rate /* Muestra "..." mientras carga */
+              }
+            </span>
           </div>
         </article>
         <article className="aspect-[1.6/1] bg-white border-b-5 border-gray-300 rounded-lg hover:border-blue-500 hover:scale-[1.01] transition-all duration-100 cursor-pointer shadow-md overflow-hidden flex flex-col ">
