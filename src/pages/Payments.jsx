@@ -3,6 +3,7 @@ import ContentLayout from "../components/ContentLayout";
 import { useEffect, useState, useMemo } from "react";
 import SearchInput from "../components/SearchInput";
 import useAppStore from "../store/appStore";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const Payments = () => {
   const { register, handleSubmit, watch, reset, setValue } = useForm({
@@ -18,6 +19,7 @@ const Payments = () => {
   const [loadingServices, setLoadingServices] = useState(false);
   const employees = useAppStore((state) => state.employees);
   const services = useAppStore((state) => state.services);
+  const rate = useAppStore((state) => state.rate?.today?.value ?? "...");
 
   // Observamos campos específicos para un mejor rendimiento
   const selectedVehiclePlate = watch("vehicle");
@@ -156,7 +158,7 @@ const Payments = () => {
                   key={service._id}
                   className="flex justify-between capitalize"
                 >
-                  {`${service.serviceName} (${service.price}$)`}
+                  {`${service.serviceName} (${service.price} $)`}
                   <input
                     type="checkbox"
                     value={service._id}
@@ -212,7 +214,7 @@ const Payments = () => {
                     className="flex justify-between capitalize"
                   >
                     <span>{service.serviceName}:</span>
-                    <span>{service.price}$</span>
+                    <span>{formatCurrency(service.price)}$</span>
                   </p>
                 ) : null;
               })
@@ -221,11 +223,18 @@ const Payments = () => {
             )}
             <p className="flex justify-between text-lg font-bold">
               <span>TOTAL: </span>
-              <span>{total} $</span>
+              <span>{formatCurrency(total)} $</span>
             </p>
             <p className="flex justify-between  font-bold">
               <span></span>
-              <span>850,00bs</span>
+              <span>
+                {`${
+                  typeof rate === "number"
+                    ? formatCurrency(total * rate)
+                    : "..."
+                }
+                Bs. D`}
+              </span>
             </p>
           </div>
         </section>
