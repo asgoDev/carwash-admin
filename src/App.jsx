@@ -3,8 +3,18 @@ import Layout from "./components/Layout";
 import routes from "./routes.jsx";
 import ClientDetail from "./pages/ClientDetail.jsx";
 import EmployeeDetail from "./pages/EmployeeDetail.jsx";
+import ServiceDetail from "./pages/ServiceDetail.jsx";
+import useAppStore from "./store/appStore";
+import { useEffect } from "react";
 
 export default function App() {
+  const fetchGlobalState = useAppStore((state) => state.fetchGlobalState);
+  const loading = useAppStore((state) => state.loading);
+
+  useEffect(() => {
+    fetchGlobalState(); // Se ejecuta una sola vez al cargar la app
+  }, [fetchGlobalState]);
+
   return (
     <Router>
       <Layout>
@@ -31,7 +41,7 @@ export default function App() {
           <Route
             key="/services/:id"
             path="/services/:id"
-            element={<EmployeeDetail />}
+            element={<ServiceDetail />}
           />
         </Routes>
       </Layout>

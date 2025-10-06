@@ -1,5 +1,5 @@
 const newClientFormConfig = {
-  submitFx: async (data) => {
+  submitFx: async (data, req, reset) => {
     const { brand, model, plate, vehicleType, ...clientData } = data;
     const transformedData = {
       ...clientData,
@@ -13,20 +13,7 @@ const newClientFormConfig = {
       ],
     };
 
-    try {
-      const response = await fetch("http://localhost:5000/api/clients", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(transformedData),
-      });
-      if (!response.ok) throw new Error("Error guardando cliente");
-      const result = await response.json();
-      console.log(result);
-
-      return result;
-    } catch (error) {
-      console.error(error);
-    }
+    req(transformedData, reset);
   },
   submitLabel: "Agregar Cliente",
   inputsConfig: [

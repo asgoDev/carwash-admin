@@ -1,26 +1,11 @@
 import { useEffect, useState, useMemo } from "react";
 import ContentLayout from "../components/ContentLayout";
-import ResumeCard from "../components/ResumeCard";
+import useAppStore from "../store/appStore.js";
+import CardList from "../components/CardList.jsx";
 
 export default function ServicesList() {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Función para obtener servicios desde el backend
-  const fetchServices = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/services");
-      if (!response.ok) throw new Error("Error cargando listado de servicios");
-      const data = await response.json();
-      setServices(data);
-    } catch (err) {
-      console.error(err);
-      setError("Error cargando listado de servicios");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const services = useAppStore((state) => state.services);
+  const loading = useAppStore((state) => state.loading);
 
   // Agrupamos los servicios por tipo de vehículo de forma dinámica
   const groupedServices = useMemo(() => {
@@ -34,13 +19,6 @@ export default function ServicesList() {
     }, {});
   }, [services]);
 
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  if (loading) return <p>Cargando servicios...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <ContentLayout title="Listado">
       {services.length === 0 ? (
@@ -53,17 +31,11 @@ export default function ServicesList() {
                 {type}
               </h2>
               <div className="p-4 flex flex-col gap-2">
-                <ul className="flex flex-col gap-4">
-                  {serviceList.map((service) => {
-                    return (
-                      <ResumeCard
-                        key={service._id}
-                        data={service}
-                        path="/services"
-                      />
-                    );
-                  })}
-                </ul>
+                <CardList
+                  entityName="servicios"
+                  items={serviceList}
+                  path={"/services"}
+                />
               </div>
             </section>
           ))}

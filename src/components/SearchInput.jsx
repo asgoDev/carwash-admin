@@ -1,5 +1,6 @@
 import { Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import useAppStore from "../store/appStore.js";
 
 const SearchInput = ({
   config: {
@@ -16,30 +17,28 @@ const SearchInput = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [secondaryFxMode, setSecondaryFxMode] = useState(false);
+  const store = useAppStore.getState();
 
-  const fetchResource = async (id) => {
+  const searchResource = (id) => {
     setIsLoading(true);
     setError(null);
-    try {
-      const res = await fetch(`http://localhost:5000/api/${path}?ci=${id}`);
-      const data = await res.json();
+    console.log(path);
 
-      if (!res.ok) {
-        throw new Error("Error solicitando recurso");
-      }
-      setResult(data[0]);
-      if (secondaryFx) setSecondaryFxMode(true);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
+    const list = store[path];
+    const result = list.find((item) => item.ci == id);
+    if (!result) {
+      return alert("No se encontro el cliente");
     }
+    if (secondaryFx) setSecondaryFxMode(true);
+
+    setResult(result);
+    setIsLoading(false);
   };
 
   const handleSearch = (id) => {
     if (!id) return;
     if (!path) return console.log("path is required");
-    fetchResource(id);
+    searchResource(id);
   };
 
   const handleKeyDown = (e) => {

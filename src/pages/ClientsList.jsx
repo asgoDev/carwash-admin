@@ -1,47 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ContentLayout from "../components/ContentLayout";
-import ResumeCard from "../components/ResumeCard";
+import useAppStore from "../store/appStore.js";
+import CardList from "../components/CardList.jsx";
 
 export default function ClientsList() {
-  const [clients, setClients] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Función para obtener clientes desde backend
-  const fetchClients = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/clients");
-      if (!response.ok) throw new Error("Error cargando listado de clientes");
-      const data = await response.json();
-      setClients(data);
-    } catch (err) {
-      console.error(err);
-      setError("Error cargando listado de clientes");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchClients();
-  }, []);
-
-  if (loading) return <p>Loading clients...</p>;
-  if (error) return <p>{error}</p>;
+  const clients = useAppStore((state) => state.clients);
+  const loading = useAppStore((state) => state.loading);
 
   return (
     <ContentLayout title="Listado">
-      {clients.length === 0 ? (
-        <p>No clients found</p>
+      {loading ? (
+        <p>Cargando clientes...</p>
       ) : (
-        <ul className="flex flex-col gap-4">
-          {clients.map((client) => {
-            return (
-              <ResumeCard key={client._id} data={client} path="/clients" />
-            );
-          })}
-        </ul>
+        <CardList entityName="clientes" items={clients} path={"/clients"} />
       )}
     </ContentLayout>
   );

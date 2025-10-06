@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import ContentLayout from "../components/ContentLayout";
 import { useEffect, useState, useMemo } from "react";
 import SearchInput from "../components/SearchInput";
+import useAppStore from "../store/appStore";
 
 const Payments = () => {
   const { register, handleSubmit, watch, reset, setValue } = useForm({
@@ -13,9 +14,10 @@ const Payments = () => {
     },
   });
   const [client, setClient] = useState(null);
-  const [employees, setEmployees] = useState(null);
   const [availableServices, setAvailableServices] = useState([]);
   const [loadingServices, setLoadingServices] = useState(false);
+  const employees = useAppStore((state) => state.employees);
+  const services = useAppStore((state) => state.services);
 
   // Observamos campos específicos para un mejor rendimiento
   const selectedVehiclePlate = watch("vehicle");
@@ -33,21 +35,6 @@ const Payments = () => {
     });
     setAvailableServices([]);
   };
-
-  // Efecto para cargar los empleados (solo una vez)
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/employees");
-        if (!res.ok) throw new Error("Failed to fetch employees");
-        const data = await res.json();
-        setEmployees(data);
-      } catch (err) {
-        console.error("Error fetching employees:", err);
-      }
-    };
-    fetchEmployees();
-  }, []);
 
   // Efecto para cargar los servicios cuando cambia el vehículo seleccionado
   useEffect(() => {
@@ -67,19 +54,11 @@ const Payments = () => {
         setLoadingServices(true);
         // Limpiamos los servicios seleccionados anteriormente
         setValue("services", []);
-        try {
-          const response = await fetch(
-            `http://localhost:5000/api/services?vehicleType=${selectedVehicle.type}`
-          );
-          if (!response.ok) throw new Error("Error cargando servicios");
-          const data = await response.json();
-          setAvailableServices(data);
-        } catch (err) {
-          console.error(err);
-          setAvailableServices([]);
-        } finally {
-          setLoadingServices(false);
-        }
+        const result = services.filter(
+          (service) => service.vehicleType === selectedVehicle.type
+        );
+        setAvailableServices(result);
+        setLoadingServices(false);
       };
 
       fetchServices();

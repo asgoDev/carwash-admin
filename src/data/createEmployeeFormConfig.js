@@ -1,17 +1,6 @@
 const newClientFormConfig = {
-  submitFx: async (data) => {
-    try {
-      const response = await fetch("http://localhost:5000/api/employees", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Error guardando empleado");
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.error(error);
-    }
+  submitFx: async (data, req, reset) => {
+    req(data, reset);
   },
   submitLabel: "Registrar Empleado",
   inputsConfig: [

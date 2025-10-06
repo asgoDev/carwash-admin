@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import DynamicInput from "./DynamicInput";
 import DynamicSubmitButton from "./DynamicSubmitButton";
 
-const DynamicForm = ({ config }) => {
+const DynamicForm = ({ config, req }) => {
   const {
     register,
     handleSubmit,
@@ -14,14 +14,7 @@ const DynamicForm = ({ config }) => {
   const { submitFx, inputsConfig, submitLabel = "Enviar" } = config;
 
   const onValidSubmit = async (data) => {
-    const resp = await submitFx(data);
-    if (resp) {
-      alert("Guardado correctamente");
-      console.log(resp);
-      reset();
-    } else {
-      alert("Error guardando recurso");
-    }
+    const resp = await submitFx(data, req, reset);
   };
 
   return (

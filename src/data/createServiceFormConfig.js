@@ -1,18 +1,6 @@
 const createServiceFormConfig = {
-  submitFx: async (data) => {
-    try {
-      console.log("enviando: ", data);
-      const response = await fetch("http://localhost:5000/api/services", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Error guardando servicio");
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.error(error);
-    }
+  submitFx: async (data, req, reset) => {
+    req(data, reset);
   },
   submitLabel: "Guardar servicio",
   inputsConfig: [
